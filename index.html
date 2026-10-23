@@ -1,0 +1,27 @@
+<!doctype html>
+<!--
+  Página puente del login del Documentation Hub.
+  Atlassian solo acepta callbacks https con dominio; la VM está en http://<IP-Hamachi>.
+  Atlassian devuelve el navegador ACÁ (https) y esta página lo reenvía al callback de la VM
+  con los mismos parámetros (?code=...&state=...). No contiene secretos: el código no sirve
+  sin el client secret, que solo está en la VM. Solo redirige a TARGET (no es un redirect abierto).
+  Si cambia la IP o el puerto de la VM, actualizar TARGET y volver a publicar.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Documentation Hub · Entrando…</title>
+  <script>
+    var TARGET = 'http://25.18.39.95:3000/api/auth/callback';
+    location.replace(TARGET + location.search);
+  </script>
+  <style>
+    body { font: 15px system-ui, sans-serif; color: #334155; display: grid; place-items: center; height: 100vh; margin: 0; }
+  </style>
+</head>
+<body>
+  <p>Volviendo al Documentation Hub… Si no pasa nada, verificá que estés conectado a Hamachi.</p>
+</body>
+</html>
